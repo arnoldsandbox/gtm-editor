@@ -1,0 +1,7 @@
+node_modules/
+dist/
+*.tsbuildinfo
+coverage/
+# Real client container exports used as local test fixtures. Never commit them.
+fixtures/private/*
+!fixtures/private/README.md

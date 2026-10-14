@@ -1,0 +1,421 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2026-10-14 10:00:00",
+    "containerVersion": {
+        "path": "accounts/111/containers/222/versions/0",
+        "accountId": "111",
+        "containerId": "222",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/111/containers/222",
+            "accountId": "111",
+            "containerId": "222",
+            "name": "Sample Web",
+            "publicId": "GTM-SAMPLE1",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/111/containers/222/workspaces?apiLink=container",
+            "features": {
+                "supportFolders": true,
+                "supportTemplates": true
+            },
+            "tagIds": [
+                "GTM-SAMPLE1"
+            ]
+        },
+        "tag": [
+            {
+                "accountId": "111",
+                "containerId": "222",
+                "tagId": "1",
+                "name": "GA4 - Google Tag",
+                "type": "googtag",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "tagId",
+                        "value": "{{Const - GA4 ID}}"
+                    }
+                ],
+                "firingTriggerId": [
+                    "2147479553"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "parentFolderId": "1",
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "111",
+                "containerId": "222",
+                "tagId": "2",
+                "name": "GA4 Event - generate_lead",
+                "type": "gaawe",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventName",
+                        "value": "generate_lead"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "measurementIdOverride",
+                        "value": "{{Const - GA4 ID}}"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "eventSettingsTable",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "form_id"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{DLV - form_id}}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "page"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{Page Path}}"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "firingTriggerId": [
+                    "3"
+                ],
+                "blockingTriggerId": [
+                    "4"
+                ],
+                "setupTag": [
+                    {
+                        "tagName": "GA4 - Google Tag",
+                        "stopOnSetupFailure": true
+                    }
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "parentFolderId": "1"
+            },
+            {
+                "accountId": "111",
+                "containerId": "222",
+                "tagId": "3",
+                "name": "Consent - Default",
+                "type": "cvt_222_10",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "region",
+                        "value": "{{CJS - Region}}"
+                    }
+                ],
+                "firingTriggerId": [
+                    "2147479573"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "parentFolderId": "2"
+            },
+            {
+                "accountId": "111",
+                "containerId": "222",
+                "tagId": "4",
+                "name": "HTML - Unrelated",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>console.log('{{Page URL}}')</script>"
+                    }
+                ],
+                "firingTriggerId": [
+                    "1"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "111",
+                "containerId": "222",
+                "triggerId": "1",
+                "name": "CE - form_submit",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "form_submit"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "accountId": "111",
+                "containerId": "222",
+                "triggerId": "2",
+                "name": "CE - cid_ready",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "cid_ready"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "accountId": "111",
+                "containerId": "222",
+                "triggerId": "3",
+                "name": "Group - form_submit + cid_ready",
+                "type": "TRIGGER_GROUP",
+                "parameter": [
+                    {
+                        "type": "LIST",
+                        "key": "triggerIds",
+                        "list": [
+                            {
+                                "type": "TRIGGER_REFERENCE",
+                                "value": "1"
+                            },
+                            {
+                                "type": "TRIGGER_REFERENCE",
+                                "value": "2"
+                            }
+                        ]
+                    }
+                ],
+                "parentFolderId": "1"
+            },
+            {
+                "accountId": "111",
+                "containerId": "222",
+                "triggerId": "4",
+                "name": "Block - internal traffic",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "MATCH_REGEX",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": ".*"
+                            }
+                        ]
+                    }
+                ],
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{CJS - Is Internal}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "111",
+                "containerId": "222",
+                "variableId": "1",
+                "name": "Const - GA4 ID",
+                "type": "c",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "G-TEST123456"
+                    }
+                ],
+                "parentFolderId": "1"
+            },
+            {
+                "accountId": "111",
+                "containerId": "222",
+                "variableId": "2",
+                "name": "DLV - form_id",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "form_id"
+                    }
+                ],
+                "parentFolderId": "1"
+            },
+            {
+                "accountId": "111",
+                "containerId": "222",
+                "variableId": "3",
+                "name": "CJS - Is Internal",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function(){ return {{Const - Internal Hosts}}.indexOf({{Page Hostname}}) > -1; }"
+                    }
+                ]
+            },
+            {
+                "accountId": "111",
+                "containerId": "222",
+                "variableId": "4",
+                "name": "Const - Internal Hosts",
+                "type": "c",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "['localhost']"
+                    }
+                ]
+            },
+            {
+                "accountId": "111",
+                "containerId": "222",
+                "variableId": "5",
+                "name": "CJS - Region",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function(){ return 'US'; }"
+                    }
+                ],
+                "parentFolderId": "2"
+            },
+            {
+                "accountId": "111",
+                "containerId": "222",
+                "variableId": "6",
+                "name": "Const - Unused",
+                "type": "c",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "x"
+                    }
+                ]
+            }
+        ],
+        "folder": [
+            {
+                "accountId": "111",
+                "containerId": "222",
+                "folderId": "1",
+                "name": "GA4"
+            },
+            {
+                "accountId": "111",
+                "containerId": "222",
+                "folderId": "2",
+                "name": "Consent"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "111",
+                "containerId": "222",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "111",
+                "containerId": "222",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "111",
+                "containerId": "222",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "111",
+                "containerId": "222",
+                "type": "EVENT",
+                "name": "Event"
+            }
+        ],
+        "fingerprint": "1",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/111/containers/222/versions/0?apiLink=version",
+        "customTemplate": [
+            {
+                "accountId": "111",
+                "containerId": "222",
+                "templateId": "10",
+                "name": "Consent Default Template",
+                "fingerprint": "1",
+                "templateData": "___INFO___\n\n{\n  \"type\": \"TAG\",\n  \"id\": \"cvt_temp_public_id\",\n  \"version\": 1,\n  \"displayName\": \"Consent Default Template\"\n}\n\n___SANDBOXED_JS_FOR_WEB_TEMPLATE___\n\ndata.gtmOnSuccess();\n",
+                "parentFolderId": "2"
+            }
+        ]
+    }
+}

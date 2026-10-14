@@ -1,0 +1,17 @@
+{
+  "name": "@gtm-editor/cli",
+  "version": "0.1.0",
+  "description": "Command-line tool for Google Tag Manager container exports.",
+  "type": "module",
+  "bin": {
+    "gtm-editor": "dist/main.js"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@gtm-editor/core": "workspace:*",
+    "commander": "^14.0.0"
+  }
+}
